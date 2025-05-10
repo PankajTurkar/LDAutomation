@@ -35,7 +35,10 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npm test
+        run: npx playwright test --reporter=html
+
+      - name: Zip HTML Report
+        run: zip -r playwright-report.zip playwright-report/
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
@@ -44,3 +47,17 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 30
+
+      - name: Email Playwright Report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: Playwright Test Report
+          body: |
+            The Playwright tests have completed. Please find the attached HTML report.
+          to: your-email@example.com
+          from: GitHub Actions <your-email@example.com>
+          attachments: playwright-report.zip
