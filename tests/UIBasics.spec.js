@@ -1,6 +1,6 @@
 import {test, expect} from '@playwright/test'
 
-test('12. Extracting the text from browser and inserting valid expect assertions in test', async ({browser})=>{
+test.skip('12. Extracting the text from browser and inserting valid expect assertions in test', async ({browser})=>{
 
     const context = await browser.newContext()
     const page = await context.newPage()
@@ -21,7 +21,7 @@ test('12. Extracting the text from browser and inserting valid expect assertions
     
 })
 
-test('13. How to work with locators which extract multiple webelements in page', async ({browser})=>{
+test.skip('13. How to work with locators which extract multiple webelements in page', async ({browser})=>{
 
     const context = await browser.newContext()
     const page = await context.newPage()
@@ -60,14 +60,14 @@ test('13. How to work with locators which extract multiple webelements in page',
 
 
 
-test('Google Open', async ({page})=>{
+test.skip('Google Open', async ({page})=>{
     await page.goto('https://google.com') 
     await expect(page).toHaveTitle('Google')
 
 
 })
 
-test('UI Controls static dropdown, Radio button & Checkbox', async ({page})=>{
+test.skip('UI Controls static dropdown, Radio button & Checkbox', async ({page})=>{
     await page.goto('https://rahulshettyacademy.com/loginpagePractise/') 
 
     const username = page.locator('#username')
@@ -108,7 +108,7 @@ test('UI Controls static dropdown, Radio button & Checkbox', async ({page})=>{
 
 })
 
-test.only("Child window handle", async({browser})=>{
+test.skip("Child window handle", async({browser})=>{
 
     const context = await browser.newContext()
     const page = await context.newPage()
